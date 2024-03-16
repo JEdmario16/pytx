@@ -1,0 +1,17 @@
+# Global directories
+__pycache__/
+
+# Global files
+*.py[cod]
+
+# Root Directories
+/.vscode/
+/.idea/
+/.site/
+/.pytest_cache/
+/.mypy_cache/
+/.ruff_cache/
+
+
+# Root Files
+/.coverage*

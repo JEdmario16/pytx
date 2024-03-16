@@ -5,16 +5,19 @@ build-backend = "hatchling.build"
 [project]
 name = "pytx"
 dynamic = ["version"]
-description = ''
+description = "Pratical Python Library for Twitter/X API"
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
-keywords = []
+keywords = ["twitter", "x", "twitter-api", "twitter-x-api", "twitter-api-v2", "twitter-x-api-v2", "pytx"]
 authors = [
   { name = "JEdmario16", email = "jedmario068@gmail.com" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
+  "Natural Language :: English",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
@@ -61,6 +64,39 @@ dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/pytx tests}"
 
+[tool.hatch.envs.style]
+skip-install = true
+detached = true
+dependencies = [
+  "black",
+  "flake8",
+  "isort",
+]
+
+[tool.hatch.envs.style.scripts]
+check = [
+  "black --check --diff .",
+  "flake8 .",
+  "isort --check-only --diff .",
+]
+fmt = [
+  "black .",
+  "isort .",
+  "check",
+]
+
+[tool.hatch.envs.docs]
+skip-install = true
+detached = true
+dependencies = [
+  "mkdocs",
+  "mkdocs-material",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build"
+serve = "mkdocs serve"
+
 [tool.coverage.run]
 source_pkgs = ["pytx", "tests"]
 branch = true
@@ -79,3 +115,14 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.mypy]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+follow_imports = "normal"
+ignore_missing_imports = false
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+warn_no_return = true
+wanrn_unused_ignores = true
